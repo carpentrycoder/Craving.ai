@@ -1,4 +1,4 @@
-const BASE=process.env.NEXT_API_BASE_URL||'http://127.0.0.1:8000';
+const BASE=process.env.NEXT_API_BASE_URL;
 function tokens(){if(typeof window==='undefined')return {};try{return JSON.parse(localStorage.getItem('cs_tokens')||'{}')}catch{return {}}}
 export function loggedIn(){return !!tokens().accessToken}
 export function clearTokens(){localStorage.removeItem('cs_tokens')}

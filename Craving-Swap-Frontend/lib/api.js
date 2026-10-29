@@ -1,4 +1,4 @@
-const BASE=process.env.NEXT_API_BASE_URL;
+const BASE="/api/backend";
 function tokens(){if(typeof window==='undefined')return {};try{return JSON.parse(localStorage.getItem('cs_tokens')||'{}')}catch{return {}}}
 export function loggedIn(){return !!tokens().accessToken}
 export function clearTokens(){localStorage.removeItem('cs_tokens')}

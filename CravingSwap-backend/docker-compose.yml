@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    env_file: .env
+    ports: ["8000:8000"]
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: cravingswap
+      POSTGRES_USER: cravingswap
+      POSTGRES_PASSWORD: local_change_me
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+volumes: {pgdata: {}}

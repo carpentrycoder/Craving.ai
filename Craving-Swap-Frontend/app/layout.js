@@ -1,0 +1,1 @@
+import './globals.css';export const metadata={title:'CravingSwap.ai — Swap the Craving, Not the Fun',description:'Practical AI-powered craving swaps, savings and behavioral tracking.'};export default function Layout({children}){return <html lang="en"><body>{children}</body></html>}

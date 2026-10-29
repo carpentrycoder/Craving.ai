@@ -26,7 +26,14 @@ export default function Nav() {
           </Link>
 
           <nav className="flex flex-wrap gap-2 text-xs">
-            <Link className="btn bg-white" href="/">
+
+            <Link
+                className="btn bg-[#ffe600]"
+                href="/how-to-use"
+              >
+                HOW TO USE
+              </Link>
+                <Link className="btn bg-white" href="/">
               SWAP
             </Link>
 

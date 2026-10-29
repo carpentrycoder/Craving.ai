@@ -6,3 +6,12 @@ async function request(path,{auth=true,...options}={}){const t=tokens();const he
 export async function register(email,password){const x=await request('/api/v1/auth/register',{auth:false,method:'POST',body:JSON.stringify({email,password})});localStorage.setItem('cs_tokens',JSON.stringify(x));return x}
 export async function login(email,password){const x=await request('/api/v1/auth/login',{auth:false,method:'POST',body:JSON.stringify({email,password})});localStorage.setItem('cs_tokens',JSON.stringify(x));return x}
 export const me=()=>request('/api/v1/auth/me'); export const analyze=(body)=>request('/api/v1/cravings/analyze',{method:'POST',body:JSON.stringify(body)}); export const history=(page=1)=>request(`/api/v1/cravings?page=${page}&page_size=20`); export const overview=()=>request('/api/v1/analytics/overview'); export const patterns=()=>request('/api/v1/analytics/craving-patterns'); export const record=(id,body)=>request(`/api/v1/outcomes/sessions/${id}`,{method:'POST',body:JSON.stringify(body)});
+
+export const getProfile = () =>
+  request("/api/v1/users/profile");
+
+export const updateProfile = (body) =>
+  request("/api/v1/users/profile", {
+    method: "PATCH",
+    body: JSON.stringify(body),
+  });

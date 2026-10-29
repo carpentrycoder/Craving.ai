@@ -8,7 +8,58 @@ def now(): return datetime.now(timezone.utc)
 class User(Base):
  __tablename__='users'; id:Mapped[uuid.UUID]=mapped_column(primary_key=True,default=uuid.uuid4); email:Mapped[str]=mapped_column(String(320),unique=True,index=True); password_hash:Mapped[str]=mapped_column(String(255)); is_active:Mapped[bool]=mapped_column(Boolean,default=True); created_at:Mapped[datetime]=mapped_column(DateTime(timezone=True),default=now)
 class UserProfile(Base):
- __tablename__='user_profiles'; id:Mapped[uuid.UUID]=mapped_column(primary_key=True,default=uuid.uuid4); user_id:Mapped[uuid.UUID]=mapped_column(ForeignKey('users.id',ondelete='CASCADE'),unique=True); preferred_language:Mapped[str]=mapped_column(String(20),default='en'); dietary_preferences:Mapped[list]=mapped_column(JSON,default=list); allergies:Mapped[list]=mapped_column(JSON,default=list); disliked_foods:Mapped[list]=mapped_column(JSON,default=list); budget_preference:Mapped[str|None]=mapped_column(String(30)); max_cooking_time:Mapped[int|None]=mapped_column(Integer)
+    __tablename__ = "user_profiles"
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        primary_key=True,
+        default=uuid.uuid4,
+    )
+
+    user_id: Mapped[uuid.UUID] = mapped_column(
+        ForeignKey("users.id", ondelete="CASCADE"),
+        unique=True,
+        index=True,
+    )
+
+    preferred_language: Mapped[str] = mapped_column(
+        String(20),
+        default="en",
+    )
+
+    budget_preference: Mapped[str | None] = mapped_column(
+        String(30),
+        nullable=True,
+    )
+
+    dietary_preferences: Mapped[list] = mapped_column(
+        JSON,
+        default=list,
+    )
+
+    allergies: Mapped[list] = mapped_column(
+        JSON,
+        default=list,
+    )
+
+    disliked_foods: Mapped[list] = mapped_column(
+        JSON,
+        default=list,
+    )
+
+    favorite_cuisines: Mapped[list] = mapped_column(
+        JSON,
+        default=list,
+    )
+
+    cooking_skill: Mapped[str | None] = mapped_column(
+        String(30),
+        nullable=True,
+    )
+
+    max_cooking_time: Mapped[int | None] = mapped_column(
+        Integer,
+        nullable=True,
+    )
 class RefreshToken(Base):
  __tablename__='refresh_tokens'; id:Mapped[uuid.UUID]=mapped_column(primary_key=True,default=uuid.uuid4); user_id:Mapped[uuid.UUID]=mapped_column(ForeignKey('users.id',ondelete='CASCADE'),index=True); token_hash:Mapped[str]=mapped_column(String(64),unique=True); revoked:Mapped[bool]=mapped_column(Boolean,default=False); expires_at:Mapped[datetime]=mapped_column(DateTime(timezone=True))
 class CravingSession(Base):

@@ -21,7 +21,7 @@ export default function Nav() {
             className="display bg-black px-3 py-2 text-3xl !text-white"
             href="/"
           >
-            CRAVINGSWAP
+            VadaPav
             <span className="!text-[#00ff41]">.AI</span>
           </Link>
 
